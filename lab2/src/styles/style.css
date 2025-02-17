@@ -50,3 +50,7 @@ body {
     color: #000000;
     text-align: center;
 }
+
+.person__card {
+    width: 40vw;
+}
