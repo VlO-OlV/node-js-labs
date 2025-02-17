@@ -9,8 +9,11 @@ dotenv.config({
 
 const port = process.env.PORT || 3000;
 
+app.use(express.static('src/styles'));
+app.use(express.static('src/images'));
+
 app.get('/', (request, response) => {
-  response.send('Hello world!');
+  response.sendFile(__dirname + '/views/index.html');
 });
 
 app.listen(port, () => console.log(`Running on port ${port}`));

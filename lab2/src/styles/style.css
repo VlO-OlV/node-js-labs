@@ -1,0 +1,52 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Roboto", sans-serif;
+    background-color: #aab9fd;
+}
+
+.card {
+    width: 80vw;
+    height: 500px;
+    margin: 50px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+    padding: 50px;
+    background-color: #ffffff;
+    border-radius: 32px;
+}
+
+.title {
+    font-size: 2rem;
+    font-weight: 700;
+    text-align: center;
+}
+
+.content {
+    display: flex;
+    gap: 30px;
+    margin: 0 auto;
+}
+
+.person {
+    text-decoration: none;
+}
+
+.person__photo {
+    width: 200px;
+    aspect-ratio: 1;
+    border-radius: 16px;
+}
+
+.person__name {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #000000;
+    text-align: center;
+}
