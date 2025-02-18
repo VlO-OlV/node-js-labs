@@ -22,6 +22,10 @@ body {
     border-radius: 32px;
 }
 
+.card_size_small {
+    width: 40vw;
+}
+
 .title {
     font-size: 2rem;
     font-weight: 700;
@@ -35,6 +39,10 @@ body {
 }
 
 .person {
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    align-items: center;
     text-decoration: none;
 }
 
@@ -51,6 +59,25 @@ body {
     text-align: center;
 }
 
-.person__card {
-    width: 40vw;
+.person__git {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    text-decoration: none;
+}
+
+.git__image {
+    width: 30px;
+    aspect-ratio: 1;
+}
+
+.button {
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 10px 30px;
+    background-color: #3366ff;
+    border-radius: 16px;
+    cursor: pointer;
+    text-decoration: none;
 }

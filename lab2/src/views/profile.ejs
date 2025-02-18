@@ -1,17 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= person.name %> - Profile</title>
-    <link rel="stylesheet" href="/style.css">
-</head>
-<body>
-<div class="card person__card">
-    <h1><%= person.name %></h1>
-    <img class="person__photo" src="<%= person.photo %>" alt="<%= person.name %>">
-    <p><strong>Age:</strong> <%= person.age %> y.o.</p>
-    <a href="/">Back</a>
-</div>
-</body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title><%= person.name %> - Profile</title>
+        <link rel="stylesheet" href="/style.css" />
+    </head>
+    <body>
+        <div class="card card_size_small">
+            <h1 class="title"><%= person.name %></h1>
+
+            <div class="person">
+                <img class="person__photo" src="<%= person.photo %>" alt="<%= person.name %>" />
+                <span class="person__age"><strong>Age:</strong> <%= person.age %> y.o.</span>
+                <span class="person__git">
+                    <strong>Git:</strong>
+                    <a href="<%= person.git %>" target="_blank"><img class="git__image" src="https://cdn-icons-png.flaticon.com/512/25/25231.png" /></a>
+                </span>
+            </div>
+
+            <a class="button" href="/">Back</a>
+        </div>
+    </body>
 </html>

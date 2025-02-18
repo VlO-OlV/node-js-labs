@@ -1,29 +1,30 @@
-import express, { Request, Response } from 'express';
+import express, { Request, Response, Express } from 'express';
 import * as dotenv from 'dotenv';
 import * as path from 'path'
 
-const app = express();
+type Member = {
+    id: string;
+    name: string;
+    age: number;
+    photo: string;
+    git: string;
+}
+
+const app: Express = express();
 
 const createPath = (page: string) => path.join(__dirname, '/views', `${page}.ejs`);
 
 dotenv.config({
-  path: __dirname + '/.env',
+    path: __dirname + '/.env',
 });
 
-const port = process.env.PORT || 3000;
+const port: string | number = process.env.PORT || 3000;
 
-app.use(express.static('src/styles'));
-app.use(express.static('src/images'));
-
-app.get('/', (request: Request, response: Response) => {
-  response.sendFile(__dirname + '/views/index.html');
-});
-
-const members = [
-  { id: "1", name: "Pasha", age: 19, photo: "/pasha.jpg" },
-  { id: "2", name: "Vanya", age: 18, photo: "https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png" },
-  { id: "3", name: "Vika", age: 18, photo: "/vika.jpg" },
-  { id: "4", name: "Oleh", age: 19, photo: "https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png" }
+const members: Member[] = [
+    { id: "1", name: "Pasha", age: 19, photo: "/pasha.jpg", git: "https://github.com/PavloSatyrenko" },
+    { id: "2", name: "Vanya", age: 18, photo: "https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png", git: "https://github.com/VlO-OlV" },
+    { id: "3", name: "Vika", age: 18, photo: "/vika.jpg", git: "https://github.com/ViktoriiaUr" },
+    { id: "4", name: "Oleh", age: 19, photo: "https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png", git: "https://github.com/esaulovolehip31" }
 ];
 
 app.set('view engine', 'ejs');
@@ -31,16 +32,16 @@ app.use(express.static('src/styles'));
 app.use(express.static('src/images'));
 
 app.get('/', (request: Request, response: Response) => {
-  response.sendFile(__dirname + '/views/index.html');
+    response.sendFile(__dirname + '/views/index.html');
 });
 
 app.get('/person/:id', (request: Request, response: Response) => {
-  const person = members.find(s => s.id === request.params.id);
-  response.render(createPath('profile'), {person});
+    const person: Member = members.find((member: Member) => member.id == request.params.id);
+    response.render(createPath('profile'), { person });
 });
 
 app.use((request: Request, response: Response) => {
-  response.status(404).send('Page not found');
+    response.status(404).send('Page not found');
 });
 
 app.listen(port, () => console.log(`Running on port ${port}`));
