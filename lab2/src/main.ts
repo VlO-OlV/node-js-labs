@@ -22,7 +22,7 @@ const port: string | number = process.env.PORT || 3000;
 
 const members: Member[] = [
     { id: "1", name: "Pasha", age: 19, photo: "/pasha.jpg", git: "https://github.com/PavloSatyrenko" },
-    { id: "2", name: "Vanya", age: 18, photo: "https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png", git: "https://github.com/VlO-OlV" },
+    { id: "2", name: "Vanya", age: 18, photo: "/vanya.jpg", git: "https://github.com/VlO-OlV" },
     { id: "3", name: "Vika", age: 18, photo: "/vika.jpg", git: "https://github.com/ViktoriiaUr" },
     { id: "4", name: "Oleh", age: 19, photo: "https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png", git: "https://github.com/esaulovolehip31" }
 ];
