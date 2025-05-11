@@ -26,14 +26,56 @@
 
 .order__list {
     display: flex;
-    gap: 32px;
+    gap: 12px;
     flex-wrap: wrap;
-    padding: 0 32px;
     margin-top: 32px;
 }
 
-.order__name {
+.order__item {
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+    padding: 16px 24px;
+    border: 1px solid #eeeeee;
+}
+
+.order__client {
     font-size: 20px;
     font-weight: 600;
-    padding-inline: 16px;
+}
+
+.order__select {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    padding: 8px 32px 8px 16px;
+    margin-left: auto;
+    font-size: 16px;
+    font-weight: 400;
+    background-color: #ffffff;
+    background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+    background-repeat: no-repeat;
+    background-position-x: calc(100% - 5px);
+    background-position-y: 7px;
+    border: 1px solid #cccccc;
+    border-radius: 8px;
+    cursor: pointer;
+    appearance: none;
+}
+.order__button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    padding: 8px 16px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #ffffff;
+    text-decoration: none;
+    background-color: #ff6f61;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
 }

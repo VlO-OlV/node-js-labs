@@ -15,7 +15,7 @@ const readMenuItemById = async (id: number): Promise<MenuItem> => {
         const filePath: string = path.join(__dirname, '../data/menuItem.json');
         fs.readFile(filePath, 'utf8', (error: NodeJS.ErrnoException, data: string) => {
             if (error) {
-                console.log('File read error');
+                console.log(error);
                 reject(error);
                 return;
             }
