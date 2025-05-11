@@ -1,6 +1,7 @@
 import { Router, Request, Response } from "express";
 import path from "path";
 import { MenuItem } from "src/models/MenuItem";
+import * as menuController from "../controllers/menuController";
 
 export const router: Router = Router();
 
@@ -32,12 +33,8 @@ const menuItems: MenuItem[] = [{
     image: '/images/burger.jpg'
 }];
 
-router.get('/', (request: Request, response: Response) => {
-    response.render(createPath('menu'), { menu: menuItems, isAdmin: request.baseUrl.includes('admin') });
-});
+router.get('/', menuController.getAllMenuItems);
 
-router.get('/:id', (request: Request, response: Response) => {
-    response.render(createPath('menuItem'), { menuItem: menuItems.find(item => item.id === Number(request.params.id)), isAdmin: request.baseUrl.includes('admin') });
-});
-router.post('/', (request: Request, response: Response) => { });
-router.post('/:id/delete', (request: Request, response: Response) => { });
+router.get('/:id', menuController.getMenuItemById);
+router.post('/', (req, res) => {});
+router.post('/:id/delete', (req, res) => {});
