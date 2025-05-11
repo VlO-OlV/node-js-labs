@@ -23,3 +23,7 @@ const menuItems: MenuItem[] = [{
 router.get('/', (req, res) => {
     res.render(createPath('menu'), { menu: menuItems });
 });
+
+router.get('/:id', (req, res) => {});
+router.post('/', (req, res) => {});
+router.post('/:id/delete', (req, res) => {});
