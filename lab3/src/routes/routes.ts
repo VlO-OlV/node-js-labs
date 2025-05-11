@@ -18,6 +18,18 @@ const menuItems: MenuItem[] = [{
     description: 'Juicy beef burger',
     price: 8,
     image: '/images/burger.jpg'
+}, {
+    id: 3,
+    name: 'Pizza',
+    description: 'Delicious cheese pizza',
+    price: 10,
+    image: '/images/pizza.jpg'
+}, {
+    id: 4,
+    name: 'Burger',
+    description: 'Juicy beef burger',
+    price: 8,
+    image: '/images/burger.jpg'
 }];
 
 router.get('/', (req, res) => {
