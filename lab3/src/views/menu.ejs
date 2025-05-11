@@ -4,23 +4,30 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Menu list</title>
+        <link rel="stylesheet" href="/styles.css" />
         <link rel="stylesheet" href="/menu.css" />
     </head>
     <body>
-        <div class="menu">
-            <h1 class="title">Menu</h1>
-            <ul class="menu__list">
-                <% menu.forEach(menuItem => { %>
-                <li class="menu__item">
-                    <a class="menu__link" href="<%= menuItem.id %>">
-                        <img class="menu__image" src="<%= menuItem.image %>" alt="<%= menuItem.name %>" />
-                        <span class="menu__name"><%= menuItem.name %></span>
-                        <span class="menu__description"><%= menuItem.description %></span>
-                        <span class="menu__price"><%= menuItem.price %> $</span>
-                    </a>
-                </li>
-                <% }) %>
-            </ul>
+        <div class="container">
+            <div class="menu card">
+                <h1 class="title">Menu</h1>
+                <ul class="menu__list">
+                    <% menu.forEach(menuItem => { %>
+                    <li class="menu__item card">
+                        <div class="menu__upper-part">
+                            <img class="menu__image" src="<%= menuItem.image %>" alt="<%= menuItem.name %>" />
+                            <span class="menu__name"><%= menuItem.name %></span>
+                            <span class="menu__description"><%= menuItem.description %></span>
+                        </div>
+
+                        <div class="menu__lower-part">
+                            <span class="menu__price"><%= menuItem.price %> $</span>
+                            <a href="#" class="menu__button">View</a>
+                        </div>
+                    </li>
+                    <% }) %>
+                </ul>
+            </div>
         </div>
     </body>
 </html>

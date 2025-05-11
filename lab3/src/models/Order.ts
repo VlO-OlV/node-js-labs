@@ -1,10 +1,9 @@
 import { OrderItem } from './OrderItem';
 
 export enum OrderStatus {
-    PENDING = 'PENDING',
-    IN_PROGRESS = 'IN_PROGRESS',
-    COMPLETED = 'COMPLETED',
-    CANCELLED = 'CANCELLED'
+    PENDING = 'Pending',
+    IN_PROGRESS = 'In Progress',
+    COMPLETED = 'Completed'
 }
 
 export class Order {
