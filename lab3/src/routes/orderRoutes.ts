@@ -1,4 +1,4 @@
-import { Router } from "express";
+import { Router, Request, Response } from "express";
 import path from "path";
 import * as orderController from "../controllers/orderController";
 
@@ -8,6 +8,3 @@ const createPath = (page: string) => path.join(__dirname, '/../views', `${page}.
 
 router.get('/', orderController.getAllOrders);
 router.get('/:id', orderController.getOrderById);
-router.post('/', (req, res) => {});
-router.post('/:id/items', (req, res) => {});
-router.post('/:id/status', (req, res) => {});

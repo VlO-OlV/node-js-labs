@@ -4,349 +4,349 @@
         "name": "Pizza",
         "description": "Delicious cheese pizza",
         "price": 10,
-        "image": "/images/pizza.jpg"
+        "image": "https://www.foodandwine.com/thmb/Wd4lBRZz3X_8qBr69UOu2m7I2iw=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/classic-cheese-pizza-FT-RECIPE0422-31a2c938fc2546c9a07b7011658cfd05.jpg"
     },
     {
         "id": 2,
         "name": "Burger",
         "description": "Juicy beef burger",
         "price": 8,
-        "image": "/images/burger.jpg"
+        "image": "https://www.foodandwine.com/thmb/DI29Houjc_ccAtFKly0BbVsusHc=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/crispy-comte-cheesburgers-FT-RECIPE0921-6166c6552b7148e8a8561f7765ddf20b.jpg"
     },
     {
         "id": 3,
         "name": "Pasta",
         "description": "Spaghetti carbonara with parmesan",
         "price": 11,
-        "image": "/images/pasta.jpg"
+        "image": "https://realfood.tesco.com/media/images/1400x919-SpaghettiCarbonara-557b6ff5-c4f3-4565-ae8e-a506f7dcc415-0-1400x919.jpg"
     },
     {
         "id": 4,
         "name": "Salad",
         "description": "Fresh vegetable salad",
         "price": 7,
-        "image": "/images/salad.jpg"
+        "image": "https://img.taste.com.au/QaDKlckA/taste/2016/11/fresh-summer-vegetable-salad-91664-1.jpeg"
     },
     {
         "id": 5,
         "name": "Sushi",
         "description": "Assorted sushi platter",
         "price": 15,
-        "image": "/images/sushi.jpg"
+        "image": "https://img.freepik.com/premium-photo/assorted-sushi-platter-dark-background_711700-19093.jpg"
     },
     {
         "id": 6,
         "name": "Steak",
         "description": "Grilled beef steak with herbs",
         "price": 20,
-        "image": "/images/steak.jpg"
+        "image": "https://cdn.jwplayer.com/v2/media/9CJfVGRV/thumbnails/uspi03PY.jpg"
     },
     {
         "id": 7,
         "name": "Taco",
         "description": "Spicy beef tacos with cheese",
         "price": 9,
-        "image": "/images/taco.jpg"
+        "image": "https://thefoodinmybeard.com/content/taco/chopcheese/choptaco8.jpg"
     },
     {
         "id": 8,
         "name": "Hot Dog",
         "description": "Classic hot dog with mustard",
         "price": 6,
-        "image": "/images/hotdog.jpg"
+        "image": "https://thejewishkitchen.com/wp-content/uploads/2016/09/hot-dog-with-mustard-and-sauerkraut.jpg"
     },
     {
         "id": 9,
         "name": "Ramen",
         "description": "Japanese ramen with pork and egg",
         "price": 13,
-        "image": "/images/ramen.jpg"
+        "image": "https://insanelygoodrecipes.com/wp-content/uploads/2022/02/Homemade-Japanese-Pork-Ramen-with-Eggs-and-Mushrooms-in-a-Black-Bowl.jpg"
     },
     {
         "id": 10,
         "name": "Falafel",
         "description": "Falafel wrap with hummus",
         "price": 8,
-        "image": "/images/falafel.jpg"
+        "image": "https://eatforum.org/content/uploads/2019/02/2yA1C4oM-1200x675.jpg"
     },
     {
         "id": 11,
         "name": "Curry",
         "description": "Spicy chicken curry with rice",
         "price": 12,
-        "image": "/images/curry.jpg"
+        "image": "https://cdn.cdkitchen.com/recipes/images/2020/04/919-9163-mx.jpg"
     },
     {
         "id": 12,
         "name": "Dumplings",
         "description": "Pork dumplings with soy sauce",
         "price": 10,
-        "image": "/images/dumplings.jpg"
+        "image": "https://www.masterbuilt.com/cdn/shop/articles/253_20-_20Pork_20Dumplings_20with_20Sweet_20Soy_20Dipping_20Sauce.jpg?v=1705429325"
     },
     {
         "id": 13,
         "name": "Sandwich",
         "description": "Ham and cheese sandwich",
         "price": 6,
-        "image": "/images/sandwich.jpg"
+        "image": "https://potatorolls.com/wp-content/uploads/2020/10/Ham-and-cheese-grilled-cheese4.jpg"
     },
     {
         "id": 14,
         "name": "Fried Rice",
         "description": "Fried rice with vegetables and egg",
         "price": 9,
-        "image": "/images/friedrice.jpg"
+        "image": "https://www.allrecipes.com/thmb/RSmU1HArhPnDi-DYrXXjUedbh4o=/0x512/filters:no_upscale():max_bytes(150000):strip_icc()/79543-Easy-Fried-Rice-DDMFS-4x3-426f1d764c354b7880a5a9a9f0a52a90.jpg"
     },
     {
         "id": 15,
         "name": "Kebab",
         "description": "Grilled lamb kebab with onions",
         "price": 14,
-        "image": "/images/kebab.jpg"
+        "image": "https://jamiegeller.com/.image/t_share/MTY1NTI0ODM1ODEzOTU5MjA2/lamb-cherry-tomato-and-red-onion-kebabs.jpg"
     },
     {
         "id": 16,
         "name": "Pancakes",
         "description": "Fluffy pancakes with syrup",
         "price": 7,
-        "image": "/images/pancakes.jpg"
+        "image": "https://www.allrecipes.com/thmb/tfq0Gu_WTLHKIg0RVJ_miUxzAH8=/0x512/filters:no_upscale():max_bytes(150000):strip_icc()/AR-162760-fluffy-pancakes-DDMFS-beauty-3x4-35d4b54b54464701b32870d4b1646bfe.jpg"
     },
     {
         "id": 17,
         "name": "Omelette",
         "description": "Cheese and ham omelette",
         "price": 6,
-        "image": "/images/omelette.jpg"
+        "image": "https://photos.bigoven.com/recipe/hero/easy-ham-cheddar-omelet-485597.jpg"
     },
     {
         "id": 18,
         "name": "Toast",
         "description": "Avocado toast with poached egg",
         "price": 8,
-        "image": "/images/toast.jpg"
+        "image": "https://www.tastingtable.com/img/gallery/sourdough-avocado-toast-recipe/l-intro-1663771590.jpg"
     },
     {
         "id": 19,
         "name": "Waffles",
         "description": "Belgian waffles with berries",
         "price": 8,
-        "image": "/images/waffles.jpg"
+        "image": "https://veganyackattack.com/wp-content/uploads/2014/02/berrypinawaffles-5-720x720.jpg"
     },
     {
         "id": 20,
         "name": "Smoothie",
         "description": "Strawberry banana smoothie",
         "price": 5,
-        "image": "/images/smoothie.jpg"
+        "image": "https://www.liveeatlearn.com/wp-content/uploads/2019/07/strawberry-banana-smoothie-vert1200.jpg"
     },
     {
         "id": 21,
         "name": "Coffee",
         "description": "Hot espresso coffee",
         "price": 3,
-        "image": "/images/coffee.jpg"
+        "image": "https://www.thespruceeats.com/thmb/HJrjMfXdLGHbgMhnM0fMkDx9XPQ=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/what-is-espresso-765702-hero-03_cropped-ffbc0c7cf45a46ff846843040c8f370c.jpg"
     },
     {
         "id": 22,
         "name": "Tea",
         "description": "Green tea with mint",
         "price": 2.5,
-        "image": "/images/tea.jpg"
+        "image": "https://www.thespruceeats.com/thmb/G27ZCMiF4ED0xIxTnMYtGbHmmVE=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/easy-fresh-mint-tea-recipe-766391-6_preview-5b291f95ba61770036733329.jpeg"
     },
     {
         "id": 23,
         "name": "Juice",
         "description": "Freshly squeezed orange juice",
         "price": 4,
-        "image": "/images/juice.jpg"
+        "image": "https://www.allrecipes.com/thmb/PVyJZOHAIirBrkRzn3Mgjfj6tF4=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/AR-8922-fresh-orange-juice-DDMFS-2x1-740fbc950a1148eaae0bc31a05d0b6ab.jpg"
     },
     {
         "id": 24,
         "name": "Ice Cream",
         "description": "Vanilla ice cream scoop",
         "price": 4,
-        "image": "/images/icecream.jpg"
+        "image": "https://media.istockphoto.com/id/1326143969/photo/bowl-with-vanilla-ice-cream-balls.jpg?s=612x612&w=0&k=20&c=WxEriNEK7yW7F4AWImLQRrpco-R_bdDYEQoyhigu9fc="
     },
     {
         "id": 25,
         "name": "Cake",
         "description": "Chocolate layer cake",
         "price": 5,
-        "image": "/images/cake.jpg"
+        "image": "https://www.foodandwine.com/thmb/rHA0d1aIMTwcxoRrTlqehLgzLUE=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/HD-fw200609_trufflecake-1f285ff1b07944d7ae5ceee94211bd9d.jpg"
     },
     {
         "id": 26,
         "name": "Brownie",
         "description": "Chocolate walnut brownie",
         "price": 3.5,
-        "image": "/images/brownie.jpg"
+        "image": "https://www.thespruceeats.com/thmb/XL9usSuj5J3E-k-LWyvmwB7veSk=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/brownies-nr-18-57bb90b45f9b58cdfd70b045.jpg"
     },
     {
         "id": 27,
         "name": "Donut",
         "description": "Glazed donut with sprinkles",
         "price": 2,
-        "image": "/images/donut.jpg"
+        "image": "https://recipesbyclare.com/cdn-cgi/image/fit=cover,width=1280,height=960,format=auto/assets/images/1737386432736-a60cnxu8.webp"
     },
     {
         "id": 28,
         "name": "Milkshake",
         "description": "Vanilla milkshake with whipped cream",
         "price": 5,
-        "image": "/images/milkshake.jpg"
+        "image": "https://icecreamfromscratch.com/wp-content/uploads/2022/08/Vanilla-Milkshake-1.2-720x540.jpg"
     },
     {
         "id": 29,
         "name": "Mozzarella Sticks",
         "description": "Fried mozzarella sticks with sauce",
         "price": 6,
-        "image": "/images/mozzarella.jpg"
+        "image": "https://i.ytimg.com/vi/reOPhjEWLZs/maxresdefault.jpg"
     },
     {
         "id": 30,
         "name": "Onion Rings",
         "description": "Crispy onion rings",
         "price": 5,
-        "image": "/images/onionrings.jpg"
+        "image": "https://www.simplyrecipes.com/thmb/cMe-79ggQu91WIWwmbpPnyAmPVs=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Simply-Recipes-Air-Fryer-Onion-Rings-LEAD-4-db00f8b94db848f9b502f7d24f06935f.jpg"
     },
     {
         "id": 31,
         "name": "Nachos",
         "description": "Cheesy nachos with jalapeños",
         "price": 7,
-        "image": "/images/nachos.jpg"
+        "image": "https://www.missionfoods.com/wp-content/uploads/2022/06/Jalapeno-Popper-Nachos.jpg"
     },
     {
         "id": 32,
         "name": "Spring Rolls",
         "description": "Vegetable spring rolls",
         "price": 6,
-        "image": "/images/springrolls.jpg"
+        "image": "https://www.indianhealthyrecipes.com/wp-content/uploads/2013/12/spring-rolls.jpg"
     },
     {
         "id": 33,
         "name": "Chicken Wings",
         "description": "Buffalo chicken wings",
         "price": 9,
-        "image": "/images/wings.jpg"
+        "image": "https://www.thespruceeats.com/thmb/CWfeSCngoL5zOxlR2tsBWETtZ3U=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/traditional-chicken-wings-912937-hero-01-6c1a003373a54538a732abc0005145d8.jpg"
     },
     {
         "id": 34,
         "name": "Lasagna",
         "description": "Baked lasagna with meat sauce",
         "price": 12,
-        "image": "/images/lasagna.jpg"
+        "image": "https://assets.canyonranch.com/system/uploads/fae/image/asset/3737/xxl_lasagna-with-meat-sauce-blog-recipes-canyon-ranch.jpg"
     },
     {
         "id": 35,
         "name": "Grilled Cheese",
         "description": "Classic grilled cheese sandwich",
         "price": 5,
-        "image": "/images/grilledcheese.jpg"
+        "image": "https://www.anchordairy.com/ph/en/recipes/lunch/classic-grilled-cheese-sandwich/_jcr_content/root/container/container/container/image.coreimg.jpeg/1722471574251/anchor-philippines-recipes-lunch-classic-grilled-cheese-sandwich.jpeg"
     },
     {
         "id": 36,
         "name": "Mac & Cheese",
         "description": "Creamy mac and cheese",
         "price": 7,
-        "image": "/images/maccheese.jpg"
+        "image": "https://www.errenskitchen.com/wp-content/uploads/2019/01/mac-and-cheese-1-of-1-5.jpg"
     },
     {
         "id": 37,
         "name": "Tuna Roll",
         "description": "Tuna sushi roll",
         "price": 11,
-        "image": "/images/tunaroll.jpg"
+        "image": "https://takestwoeggs.com/wp-content/uploads/2023/08/Tekka-Maki-Tuna-Sushi-Roll-Takestwoeggs-sq.jpg"
     },
     {
         "id": 38,
         "name": "Tempura",
         "description": "Shrimp tempura with sauce",
         "price": 13,
-        "image": "/images/tempura.jpg"
+        "image": "https://saudereggs.com/content/uploads/2019/01/crispy-shrimp-tempura.jpg"
     },
     {
         "id": 39,
         "name": "Chicken Nuggets",
         "description": "Crispy chicken nuggets",
         "price": 6,
-        "image": "/images/nuggets.jpg"
+        "image": "https://www.allrecipes.com/thmb/CsWr1HzbN0FqzaXTALOKAJflaEY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/AR-161469-the-best-ever-chicken-nuggets-DDMFS-2x1-6b97bd972d2c41979751dfa24bbe18da.jpg"
     },
     {
         "id": 40,
         "name": "Gyoza",
         "description": "Pan-fried Japanese dumplings",
         "price": 9,
-        "image": "/images/gyoza.jpg"
+        "image": "https://assets.epicurious.com/photos/628ba0d3fa016bab2139efa2/3:2/w_6819,h_4546,c_limit/Gyoza_RECIPE_051922_34332.jpg"
     },
     {
         "id": 41,
         "name": "Churros",
         "description": "Fried churros with cinnamon sugar",
         "price": 4,
-        "image": "/images/churros.jpg"
+        "image": "https://www.carnation.co.uk/sites/default/files/2022-06/Cinnamon_Churros_Tablet.png"
     },
     {
         "id": 42,
         "name": "Tiramisu",
         "description": "Classic Italian tiramisu",
         "price": 6,
-        "image": "/images/tiramisu.jpg"
+        "image": "https://img.sndimg.com/food/image/upload/q_92,fl_progressive,w_1200,c_scale/v1/img/recipes/13/75/80/gIOf9wmOTUSvekgU8VaD_0S9A7296.jpg"
     },
     {
         "id": 43,
         "name": "Crepes",
         "description": "Sweet crepes with jam",
         "price": 7,
-        "image": "/images/crepes.jpg"
+        "image": "https://www.bonniesjams.com/cdn/shop/articles/Screen_Shot_2024-02-22_at_8.31.28_AM_768x.png"
     },
     {
         "id": 44,
         "name": "Croissant",
         "description": "Buttery croissant",
         "price": 3,
-        "image": "/images/croissant.jpg"
+        "image": "https://www.lalevain.com/wp-content/uploads/2021/11/Xsant.jpg"
     },
     {
         "id": 45,
         "name": "Burrito",
         "description": "Beef and bean burrito",
         "price": 10,
-        "image": "/images/burrito.jpg"
+        "image": "https://blog.suvie.com/wp-content/uploads/2020/05/BeefandBeanBurrito_Hero-scaled.jpg"
     },
     {
         "id": 46,
         "name": "Pho",
         "description": "Vietnamese beef noodle soup",
         "price": 13,
-        "image": "/images/pho.jpg"
+        "image": "https://cdn.apartmenttherapy.info/image/upload/f_jpg,q_auto:eco,c_fill,g_auto,w_1500,ar_1:1/k%2Farchive%2Feb84435688acfbb9c988f165b754bb3a989df6b5"
     },
     {
         "id": 47,
         "name": "Quesadilla",
         "description": "Cheese quesadilla with salsa",
         "price": 9,
-        "image": "/images/quesadilla.jpg"
+        "image": "https://theveglife.com/wp-content/uploads/2022/12/Plated-1.jpg"
     },
     {
         "id": 48,
         "name": "Bagel",
         "description": "Toasted bagel with cream cheese",
         "price": 4,
-        "image": "/images/bagel.jpg"
+        "image": "https://cdn.apartmenttherapy.info/image/upload/f_jpg,q_auto:eco,c_fill,g_auto,w_1500,ar_4:3/k%2FPhoto%2F2022-11-how-to-make-cream-cheese%2FHOW-TO-MAKE-CREAM-CHEESE_083"
     },
     {
         "id": 49,
         "name": "Cola",
         "description": "Chilled cola drink",
         "price": 2,
-        "image": "/images/cola.jpg"
+        "image": "https://upload.wikimedia.org/wikipedia/commons/c/cf/Tumbler_of_cola_with_ice.jpg"
     },
     {
         "id": 50,
         "name": "Water",
         "description": "Bottled still water",
         "price": 1.5,
-        "image": "/images/water.jpg"
+        "image": "https://bulkbuydirect.co.uk/cdn/shop/files/157641021653022.webp?v=1727700494"
     }
 ]

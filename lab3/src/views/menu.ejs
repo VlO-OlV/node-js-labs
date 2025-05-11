@@ -10,7 +10,16 @@
     <body>
         <div class="container">
             <div class="menu card">
-                <h1 class="title">Menu</h1>
+                <div class="menu__header">
+                    <h1 class="title">Menu</h1>
+                    <% if (!isAdmin) { %>
+                    <form action="/order" method="POST">
+                        <button class="menu__create-order-button">Create order</button>
+                    </form>
+                    <% } else { %>
+                    <a href="/admin/order" class="menu__create-order-button">Admin</a>
+                    <% } %>
+                </div>
                 <ul class="menu__list">
                     <% menu.forEach(menuItem => { %>
                     <li class="menu__item card">
@@ -22,11 +31,26 @@
 
                         <div class="menu__lower-part">
                             <span class="menu__price"><%= menuItem.price %> $</span>
-                            <a href="#" class="menu__button">View</a>
+                            <% if (isAdmin) { %>
+                            <a href="/admin/menu/<%= menuItem.id %>" class="menu__button">View</a>
+                            <% } else { %>
+                            <a href="/menu/<%= menuItem.id %>" class="menu__button">View</a>
+                            <% } %>
                         </div>
                     </li>
                     <% }) %>
                 </ul>
+
+                <% if (isAdmin) { %>
+                <form action="/menu" method="POST" class="menu__form">
+                    <h2 class="menu-form__title">Add Menu Item</h2>
+                    <input class="menu-form__input" type="text" name="name" placeholder="Name" required />
+                    <textarea class="menu-form__textarea" name="description" placeholder="Description" required></textarea>
+                    <input class="menu-form__input" type="text" name="image" placeholder="Image URL" />
+                    <input class="menu-form__input" type="number" name="price" placeholder="Price" required />
+                    <button class="menu-form__button" type="submit">Add Menu Item</button>
+                </form>
+                <% } %>
             </div>
         </div>
     </body>
