@@ -1,7 +1,21 @@
-export const getAllMenuItems = (req, res) => {};
+import { Request, Response } from 'express';
+import path from "path";
+import * as menuService from '../services/menuService';
 
-export const getMenuItemById = (req, res) => {};
+const createPath = (page: string) => path.join(__dirname, '/../views', `${page}.ejs`);
 
-export const createMenuItem = (req, res) => {};
+export const getAllMenuItems = (req: Request, res: Response) => {
+  const menuItems = menuService.getAllMenuItems();
+  //res.render(createPath('menu'), { menuItems });
+  res.send(menuItems);
+};
 
-export const deleteMenuItem = (req, res) => {};
+export const getMenuItemById = (req: Request, res: Response) => {
+  const menuItemId = parseInt(req.params.id);
+  const menuItem = menuService.getMenuItemById(menuItemId);
+  res.send(menuItem);
+};
+
+export const createMenuItem = (req: Request, res: Response) => {};
+
+export const deleteMenuItem = (req: Request, res: Response) => {};
