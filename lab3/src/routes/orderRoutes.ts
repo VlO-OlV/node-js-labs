@@ -1,11 +1,12 @@
-import { Router } from "express";
+import { Router, Request, Response } from "express";
 import path from "path";
+
 export const router: Router = Router();
 
 const createPath = (page: string) => path.join(__dirname, '/../views', `${page}.ejs`);
 
-router.get('/', (req, res) => {});
-router.get('/:id', (req, res) => {});
-router.post('/', (req, res) => {});
-router.post('/:id/items', (req, res) => {});
-router.post('/:id/status', (req, res) => {});
+router.get('/', (request: Request, response: Response) => { });
+router.get('/:id', (request: Request, response: Response) => { });
+router.post('/', (request: Request, response: Response) => { });
+router.post('/:id/items', (request: Request, response: Response) => { });
+router.post('/:id/status', (request: Request, response: Response) => { });
