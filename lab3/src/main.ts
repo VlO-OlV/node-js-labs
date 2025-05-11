@@ -1,6 +1,7 @@
 import express, { Request, Response, Express } from 'express';
 import * as dotenv from 'dotenv';
 import * as path from 'path'
+import { router } from './routes/routes';
 
 const app: Express = express();
 
@@ -16,9 +17,9 @@ app.set('view engine', 'ejs');
 app.use(express.static('src/public/styles'));
 app.use(express.static('src/public/images'));
 
-app.get('/', (request: Request, response: Response) => {
-    response.sendFile(__dirname + '/views/index.html');
-});
+app.use(express.urlencoded({ extended: true }));
+
+app.use('/', router);
 
 app.use((request: Request, response: Response) => {
     response.status(404).send('Page not found');
