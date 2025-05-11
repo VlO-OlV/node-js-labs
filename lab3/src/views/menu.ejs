@@ -7,21 +7,20 @@
         <link rel="stylesheet" href="/menu.css" />
     </head>
     <body>
-        <div class="card card_size_small">
-            <h1 class="title"><%= person.name %></h1>
-
-            <div class="person">
-                <img class="person__photo" src="<%= person.photo %>" alt="<%= person.name %>" />
-                <span class="person__age"><strong>Age:</strong> <%= person.age %> y.o.</span>
-                <span class="person__git">
-                    <strong>Git:</strong>
-                    <a href="<%= person.git %>" target="_blank"
-                        ><img class="git__image" src="https://cdn-icons-png.flaticon.com/512/25/25231.png"
-                    /></a>
-                </span>
-            </div>
-
-            <a class="button" href="/">Back</a>
+        <div class="menu">
+            <h1 class="title">Menu</h1>
+            <ul class="menu__list">
+                <% menu.forEach(menuItem => { %>
+                <li class="menu__item">
+                    <a class="menu__link" href="<%= menuItem.id %>">
+                        <img class="menu__image" src="<%= menuItem.image %>" alt="<%= menuItem.name %>" />
+                        <span class="menu__name"><%= menuItem.name %></span>
+                        <span class="menu__description"><%= menuItem.description %></span>
+                        <span class="menu__price"><%= menuItem.price %> $</span>
+                    </a>
+                </li>
+                <% }) %>
+            </ul>
         </div>
     </body>
 </html>
