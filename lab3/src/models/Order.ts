@@ -1,7 +1,7 @@
-import { MenuItem } from "./MenuItem";
+import { OrderItem } from './OrderItem';
 
 export class Order {
     id: number;
     customerName: string;
-    items: MenuItem[];
+    items: OrderItem[];
 }
