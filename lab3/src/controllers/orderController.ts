@@ -1,33 +1,32 @@
 import { Request, Response } from 'express';
+import path from "path";
 import * as orderService from '../services/orderService';
+import { Order } from 'src/models/Order';
 
-export const getAllOrders = (req: Request, res: Response) => {
-  const orders = orderService.getAllOrders();
-  orders.then((data) => {
-    res.send(data);
-  }).catch((error) => {
-    console.error('Error fetching orders');
-    res.status(500).send('Internal Server Error');
-  });
+const createPath = (page: string) => path.join(__dirname, '/../views', `${page}.ejs`);
+
+export const getAllOrders = (request: Request, response: Response) => {
+    orderService.getAllOrders().then((orders: Order[]) => {
+        response.render(createPath('order'), { orders: orders });
+    }).catch((error) => {
+        console.error(error);
+        response.status(500).send('Internal Server Error');
+    });
 };
 
-export const getOrderById = (req: Request, res: Response) => {
-  const orderId = parseInt(req.params.id);
-  const order = orderService.getOrderById(orderId);
-  order.then((data) => {
-    if (data) {
-      res.send(data);
-    } else {
-      res.status(404).send('Order not found');
-    }
-  }).catch((error) => {
-    console.error('Error fetching order');
-    res.status(500).send('Internal Server Error');
-  });
+export const getOrderById = (request: Request, response: Response) => {
+    const orderId: number = parseInt(request.params.id);
+
+    orderService.getOrderById(orderId).then((order: Order) => {
+        response.render(createPath('orderItem'), { order: order, isAdmin: request.baseUrl.includes('admin') });
+    }).catch((error) => {
+        console.error(error);
+        response.status(500).send('Internal Server Error');
+    });
 };
 
-export const updateOrderStatus = (req: Request, res: Response) => {};
+export const updateOrderStatus = (req: Request, res: Response) => { };
 
-export const createOrder = (req: Request, res: Response) => {};
+export const createOrder = (req: Request, res: Response) => { };
 
-export const addOrderItems = (req: Request, res: Response) => {};
+export const addOrderItems = (req: Request, res: Response) => { };

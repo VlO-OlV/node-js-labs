@@ -5,6 +5,6 @@ export const getAllMenuItems = (): MenuItem[] => {
   return menuRepository.getAllMenuItems();
 }
 
-export const getMenuItemById = (id: number): MenuItem => {
+export const getMenuItemById = (id: number): Promise<MenuItem> => {
   return menuRepository.getMenuItemById(id);
 };

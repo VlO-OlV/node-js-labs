@@ -1,9 +1,10 @@
+import { Order } from 'src/models/Order';
 import * as orderRepository from '../repositories/orderRepository';
 
-export const getAllOrders = () => {
-  return orderRepository.getAllOrders();
+export const getAllOrders = (): Promise<Order[]> => {
+    return orderRepository.getAllOrders();
 };
 
-export const getOrderById = (id: number) => {
-  return orderRepository.getOrderById(id);
+export const getOrderById = (id: number): Promise<Order> => {
+    return orderRepository.getOrderById(id);
 };

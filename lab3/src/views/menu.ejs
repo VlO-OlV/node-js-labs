@@ -12,17 +12,18 @@
             <div class="menu card">
                 <div class="menu__header">
                     <h1 class="title">Menu</h1>
-                    <% if (!isAdmin) { %>
-                    <form action="/order" method="POST">
-                        <button class="menu__create-order-button">Create order</button>
-                    </form>
+                    <% if (isAdmin) { %>
+                    <a href="/admin/orders" class="menu__order-button">Check orders</a>
                     <% } else { %>
-                    <a href="/admin/order" class="menu__create-order-button">Admin</a>
+                    <form action="/orders" method="POST">
+                        <button class="menu__order-button">Create order</button>
+                    </form>
                     <% } %>
                 </div>
-                <ul class="menu__list">
+
+                <div class="menu__list">
                     <% menu.forEach(menuItem => { %>
-                    <li class="menu__item card">
+                    <div class="menu__item card">
                         <div class="menu__upper-part">
                             <img class="menu__image" src="<%= menuItem.image %>" alt="<%= menuItem.name %>" />
                             <span class="menu__name"><%= menuItem.name %></span>
@@ -37,9 +38,9 @@
                             <a href="/menu/<%= menuItem.id %>" class="menu__button">View</a>
                             <% } %>
                         </div>
-                    </li>
+                    </div>
                     <% }) %>
-                </ul>
+                </div>
 
                 <% if (isAdmin) { %>
                 <form action="/menu" method="POST" class="menu__form">
