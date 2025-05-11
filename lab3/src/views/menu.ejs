@@ -13,7 +13,11 @@
                 <div class="menu__header">
                     <h1 class="title">Menu</h1>
                     <% if (!isAdmin) { %>
-                        <a href="/order" class="menu__create-order-button">Create order</a>
+                    <form action="/order" method="POST">
+                        <button class="menu__create-order-button">Create order</button>
+                    </form>
+                    <% } else { %>
+                    <a href="/admin/order" class="menu__create-order-button">Admin</a>
                     <% } %>
                 </div>
                 <ul class="menu__list">

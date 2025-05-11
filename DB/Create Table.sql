@@ -1,7 +1,7 @@
-DROP TABLE IF EXISTS MenuItem;
+DROP TABLE IF EXISTS OrderItem;
 DROP TABLE IF EXISTS "Order";
 DROP TYPE IF EXISTS Order_Status_Type;
-DROP TABLE IF EXISTS OrderItem;
+DROP TABLE IF EXISTS MenuItem;
 
 CREATE TABLE MenuItem
 (
@@ -12,7 +12,7 @@ CREATE TABLE MenuItem
     image       VARCHAR(200) NULL
 );
 
-CREATE TYPE Order_Status_Type AS ENUM ('Pending', 'In Progress', 'Completed');
+CREATE TYPE Order_Status_Type AS ENUM ('New', 'Pending', 'In Progress', 'Completed');
 
 CREATE TABLE "Order"
 (
