@@ -1,7 +1,9 @@
 import { Request, Response } from 'express';
 import path from "path";
 import * as orderService from '../services/orderService';
+import * as menuService from '../services/menuService';
 import { Order } from 'src/models/Order';
+import { MenuItem } from 'src/models/MenuItem';
 
 const createPath = (page: string) => path.join(__dirname, '/../views', `${page}.ejs`);
 
@@ -18,7 +20,9 @@ export const getOrderById = (request: Request, response: Response) => {
     const orderId: number = parseInt(request.params.id);
 
     orderService.getOrderById(orderId).then((order: Order) => {
-        response.render(createPath('orderItem'), { order: order, isAdmin: request.baseUrl.includes('admin') });
+        const menuItems: MenuItem[] = menuService.getAllMenuItems();
+
+        response.render(createPath('orderItem'), { order: order, menu: menuItems, isAdmin: request.baseUrl.includes('admin') });
     }).catch((error) => {
         console.error(error);
         response.status(500).send('Internal Server Error');
