@@ -138,3 +138,9 @@
     border-radius: 8px;
     cursor: pointer;
 }
+
+.menu__item-details {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
