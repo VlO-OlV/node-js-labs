@@ -1,5 +1,8 @@
 import pgPromise from 'pg-promise';
 import { Extensions, MenuItemsRepository, OrderItemsRepository, OrdersRepository } from './repositories';
+import * as dotenv from "dotenv";
+
+dotenv.config();
 
 type ExtendedProtocol = pgPromise.IDatabase<Extensions> & Extensions;
 
@@ -11,8 +14,6 @@ const initOptions: pgPromise.IInitOptions<Extensions> = {
     }
 };
 
-const pgp: pgPromise.IMain = pgPromise({...initOptions});
+export const pgp: pgPromise.IMain = pgPromise({...initOptions});
 
-const db: ExtendedProtocol = pgp(process.env.DATABASE_URL);
-
-export {db, pgp};
+export const db: ExtendedProtocol = pgp(process.env.DATABASE_URL);

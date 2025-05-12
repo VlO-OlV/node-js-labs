@@ -9,7 +9,7 @@ import { OrderItem } from 'src/database/models/OrderItem';
 const createPath = (page: string) => path.join(__dirname, '/../views', `${page}.ejs`);
 
 export const getAllOrders = (request: Request, response: Response) => {
-    orderService.getAllOrders().then((orders: Order[]) => {
+    orderService.getAllOrders().then((orders: Array<Order & { items: OrderItem[] }>) => {
         response.render(createPath('order'), { orders: orders });
     }).catch((error) => {
         console.error(error);
@@ -20,7 +20,7 @@ export const getAllOrders = (request: Request, response: Response) => {
 export const getOrderById = (request: Request, response: Response) => {
     const orderId: number = parseInt(request.params.id);
 
-    orderService.getOrderById(orderId).then((order: Order) => {
+    orderService.getOrderById(orderId).then((order: Order & { items: OrderItem[] }) => {
         menuService.getAllMenuItems()
             .then((menuItems: MenuItem[]) => {
                 response.render(createPath('orderItem'), { order: order, menu: menuItems, isAdmin: request.baseUrl.includes('admin') });
@@ -53,8 +53,7 @@ export const updateOrderStatus = (request: Request, response: Response) => {
 };
 
 export const createOrder = (request: Request, response: Response) => {
-    const order: Order = {
-        id: 0,
+    const order: Omit<Order, 'id'> = {
         customerName: request.session["customerName"],
         status: OrderStatus.NEW,
     };

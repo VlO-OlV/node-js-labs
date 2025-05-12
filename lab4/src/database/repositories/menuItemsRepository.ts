@@ -6,25 +6,18 @@ export class MenuItemsRepository {
     constructor(private db: IDatabase<any>, private pgp: IMain) {}
 
     create(newItem: Omit<MenuItem, 'id'>): Promise<void> {
-        return this.db.one(""/*sql.add, {
-            userId: +values.userId,
-            productName: values.name
-        }*/);
+        return this.db.none('INSERT INTO menu_items(name, description, price, image) VALUES(${name}, ${description}, ${price}, ${image})', newItem);
     }
 
     deleteById(id: number): Promise<void> {
-        return this.db.result('DELETE FROM menuItems WHERE id = $1', +id);
+        return this.db.none('DELETE FROM menu_items WHERE id = $1', id);
     }
 
     findById(id: number): Promise<MenuItem | null> {
-        return this.db.oneOrNone(""/*sql.find, {
-            userId: +values.userId,
-            productName: values.name
-        }*/);
+        return this.db.oneOrNone('SELECT * FROM menu_items WHERE id = $1', id);
     }
 
-    // Returns all product records;
     find(): Promise<MenuItem[]> {
-        return this.db.any('SELECT * FROM products');
+        return this.db.any('SELECT * FROM menu_items');
     }
 }

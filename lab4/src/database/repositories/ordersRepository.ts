@@ -3,38 +3,25 @@ import { Order } from '../models/Order';
 
 export class OrdersRepository {
 
-    constructor(private db: IDatabase<any>, private pgp: IMain) {
-        /*
-          If your repository needs to use helpers like ColumnSet,
-          you should create it conditionally, inside the constructor,
-          i.e. only once, as a singleton.
-        */
-    }
+    constructor(private db: IDatabase<any>, private pgp: IMain) {}
 
     create(newItem: Omit<Order, 'id'>): Promise<Order> {
-        return this.db.one(""/*sql.add, {
-            userId: +values.userId,
-            productName: values.name
-        }*/);
+        return this.db.one('INSERT INTO orders(customer_name, status) VALUES(${customerName}, ${status}) RETURNING *', newItem);
     }
 
     deleteById(id: number): Promise<void> {
-        return this.db.result('DELETE FROM menuItems WHERE id = $1', +id);
+        return this.db.none('DELETE FROM orders WHERE id = $1', +id);
     }
 
     updateById(id: number, updatedItem: Partial<Omit<Order, 'id'>>): Promise<void> {
-        return this.db.result(`UPDATE menuItems SET status = $1${updatedItem.customerName ? ', customer_name = $2' : ''} WHERE id = $3`, [updatedItem.status, updatedItem.customerName, id]);
+        return this.db.none(`UPDATE orders SET status = $1${updatedItem.customerName ? ', customer_name = $2' : ''} WHERE id = $3`, [updatedItem.status, updatedItem.customerName, id]);
     }
 
     findById(id: number): Promise<Order | null> {
-        return this.db.oneOrNone(""/*sql.find, {
-            userId: +values.userId,
-            productName: values.name
-        }*/);
+        return this.db.oneOrNone('SELECT * FROM orders WHERE id = $1', id);
     }
 
-    // Returns all product records;
     find(): Promise<Order[]> {
-        return this.db.any('SELECT * FROM products');
+        return this.db.any('SELECT * FROM orders');
     }
 }

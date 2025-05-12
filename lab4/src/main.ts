@@ -6,9 +6,7 @@ import { router as orderRouter } from "./routes/orderRoutes";
 
 const app: Express = express();
 
-dotenv.config({
-    path: __dirname + "/.env",
-});
+dotenv.config();
 
 const port: string | number = process.env.PORT || 3000;
 

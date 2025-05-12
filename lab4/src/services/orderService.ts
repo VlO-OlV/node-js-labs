@@ -1,16 +1,24 @@
-import { db } from 'src/database/client';
+import { db } from '../database/client';
 import { Order, OrderStatus } from 'src/database/models/Order';
 import { OrderItem } from 'src/database/models/OrderItem';
 
-export const getAllOrders = (): Promise<Order[]> => {
-    return db.order.find();
+export const getAllOrders = async (): Promise<Array<Order & { items: OrderItem[] }>> => {
+    const order = await db.order.find();
+    return Promise.all(
+        order.map(async (order) => {
+            const items = await db.orderItem.find(order.id);
+            return { ...order, items };
+        })
+    );
 };
 
-export const getOrderById = (id: number): Promise<Order> => {
-    return db.order.findById(id);
+export const getOrderById = async (id: number): Promise<Order & { items: OrderItem[] }> => {
+    const order = await db.order.findById(id);
+    const items = await db.orderItem.find(id);
+    return { ...order, items };
 };
 
-export const createOrder = (order: Order): Promise<Order> => {
+export const createOrder = (order: Omit<Order, 'id'>): Promise<Order> => {
     return db.order.create(order);
 };
 

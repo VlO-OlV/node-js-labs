@@ -1,4 +1,4 @@
-import { db } from 'src/database/client';
+import { db } from '../database/client';
 import { MenuItem } from 'src/database/models/MenuItem';
 
 export const getAllMenuItems = (): Promise<MenuItem[]> => {
