@@ -16,35 +16,29 @@
                 </div>
 
                 <div class="order__list">
-                    <% orders.forEach(orderItem => { %>
+                    <% orders.reverse().filter(orderItem => orderItem.status != "New").forEach(orderItem => { %>
                     <div class="order__item card">
                         <span class="order__client"><%= orderItem.customerName %></span>
 
-                        <% if (orderItem.items.length == 1) { %>
-                        <span class="order__amount"><%= orderItem.items.length %> dish ordered</span>
+                        <% if (orderItem.items.filter(item => item.amount).length == 1) { %>
+                        <span class="order__amount"><%= orderItem.items.filter(item => item.amount).length %> dish ordered</span>
                         <% } else { %>
-                        <span class="order__amount"><%= orderItem.items.length %> dishes ordered</span>
+                        <span class="order__amount"><%= orderItem.items.filter(item => item.amount).length %> dishes ordered</span>
                         <% } %>
 
-                        <select name="status" class="order__select">
-                            <% if (orderItem.status === "Pending") { %>
-                            <option value="Pending" selected>Pending</option>
-                            <% } else { %>
-                            <option value="Pending">Pending</option>
-                            <% } %> <% if (orderItem.status === "In Progress") { %>
-                            <option value="In Progress" selected>In Progress</option>
-                            <% } else { %>
-                            <option value="In Progress">In Progress</option>
-                            <% } %> <% if (orderItem.status === "Completed") { %>
-                            <option value="Completed" selected>Completed</option>
-                            <% } else { %>
-                            <option value="Completed">Completed</option>
-                            <% } %>
-                        </select>
+                        <span class="order__status"><%= orderItem.status %></span>
 
+                        <% if (orderItem.status == "In Progress") { %>
                         <form action="orders/<%= orderItem.id %>/status" method="POST">
-                            <button class="order__button" type="submit">Update</button>
+                            <input type="hidden" name="status" value="Completed" />
+                            <button class="order__button" type="submit">Complete</button>
                         </form>
+                        <% } else if (orderItem.status == "Pending") { %>
+                        <form action="orders/<%= orderItem.id %>/status" method="POST">
+                            <input type="hidden" name="status" value="In Progress" />
+                            <button class="order__button" type="submit">Send order</button>
+                        </form>
+                        <% } %>
 
                         <a href="/admin/orders/<%= orderItem.id %>" class="order__button">View</a>
                     </div>

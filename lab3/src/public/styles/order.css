@@ -1,5 +1,6 @@
 .order {
     margin-top: 64px;
+    margin-bottom: 64px;
 }
 
 .order__header {
@@ -45,25 +46,10 @@
     font-weight: 600;
 }
 
-.order__select {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 40px;
-    padding: 8px 32px 8px 16px;
-    margin-left: auto;
-    font-size: 16px;
-    font-weight: 400;
-    background-color: #ffffff;
-    background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
-    background-repeat: no-repeat;
-    background-position-x: calc(100% - 5px);
-    background-position-y: 7px;
-    border: 1px solid #cccccc;
-    border-radius: 8px;
-    cursor: pointer;
-    appearance: none;
+.order__amount {
+    margin-right: auto;
 }
+
 .order__button {
     display: flex;
     justify-content: center;

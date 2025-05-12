@@ -1,5 +1,7 @@
 .menu {
+    gap: 32px;
     margin-top: 64px;
+    margin-bottom: 64px;
 }
 
 .menu__list {
@@ -14,8 +16,8 @@
     justify-content: space-between;
     gap: 12px;
     width: calc(100% / 4 - 32px * 3 / 4);
-    aspect-ratio: 1 / 1.5;
-    padding: 0 0 52px;
+    aspect-ratio: 1 / 1.2;
+    padding: 0;
 }
 
 .menu__upper-part {
@@ -137,10 +139,4 @@
     border: none;
     border-radius: 8px;
     cursor: pointer;
-}
-
-.menu__item-details {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
 }

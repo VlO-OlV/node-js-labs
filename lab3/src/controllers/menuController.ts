@@ -22,6 +22,30 @@ export const getMenuItemById = (request: Request, response: Response) => {
     });
 };
 
-export const createMenuItem = (req: Request, res: Response) => { };
+export const createMenuItem = (request: Request, response: Response) => {
+    const menuItem: MenuItem = {
+        id: 0,
+        name: request.body.name,
+        description: request.body.description,
+        image: request.body.image,
+        price: parseFloat(request.body.price)
+    };
 
-export const deleteMenuItem = (req: Request, res: Response) => { };
+    menuService.createMenuItem(menuItem).then(() => {
+        response.redirect('/admin/menu');
+    }).catch((error) => {
+        console.error(error);
+        response.status(500).send('Internal Server Error');
+    });
+};
+
+export const deleteMenuItem = (request: Request, response: Response) => {
+    const menuItemId: number = parseInt(request.params.id);
+
+    menuService.deleteMenuItem(menuItemId).then(() => {
+        response.redirect('/admin/menu');
+    }).catch((error) => {
+        console.error(error);
+        response.status(500).send('Internal Server Error');
+    });
+};

@@ -22,10 +22,17 @@
                 </div>
 
                 <div class="menu__list">
-                    <% menu.forEach(menuItem => { %>
+                    <% menu.reverse().forEach(menuItem => { %>
                     <div class="menu__item card">
                         <div class="menu__upper-part">
+                            <% if (menuItem.image) { %>
                             <img class="menu__image" src="<%= menuItem.image %>" alt="<%= menuItem.name %>" />
+                            <% } else { %>
+                            <img
+                                class="menu__image"
+                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRi7Z6nS0paslUx7X-rSOyNqmhge_ugyoMcFA&s"
+                            />
+                            <% } %>
                             <span class="menu__name"><%= menuItem.name %></span>
                             <span class="menu__description"><%= menuItem.description %></span>
                         </div>
