@@ -1,9 +1,9 @@
-DROP TABLE IF EXISTS OrderItem;
-DROP TABLE IF EXISTS "Order";
-DROP TYPE IF EXISTS Order_Status_Type;
-DROP TABLE IF EXISTS MenuItem;
+DROP TABLE IF EXISTS order_items;
+DROP TABLE IF EXISTS orders;
+DROP TYPE IF EXISTS order_status;
+DROP TABLE IF EXISTS menu_items;
 
-CREATE TABLE MenuItem
+CREATE TABLE menu_items
 (
     id          SERIAL PRIMARY KEY,
     name        VARCHAR(30)  NOT NULL,
@@ -12,21 +12,21 @@ CREATE TABLE MenuItem
     image       VARCHAR(200) NULL
 );
 
-CREATE TYPE Order_Status_Type AS ENUM ('New', 'Pending', 'In Progress', 'Completed');
+CREATE TYPE order_status AS ENUM ('New', 'Pending', 'In Progress', 'Completed');
 
-CREATE TABLE "Order"
+CREATE TABLE orders
 (
     id           SERIAL PRIMARY KEY,
-    customerName VARCHAR(20)       NOT NULL,
-    status       Order_Status_Type NOT NULL
+    customer_name VARCHAR(20)       NOT NULL,
+    status       order_status NOT NULL
 );
 
-CREATE TABLE OrderItem
+CREATE TABLE order_items
 (
     id         SERIAL PRIMARY KEY,
-    orderId    INT NOT NULL,
-    menuItemId INT NOT NULL,
+    order_id    INT NOT NULL,
+    menu_item_id INT NOT NULL,
     amount     INT NOT NULL,
-    FOREIGN KEY (menuItemId) REFERENCES MenuItem (id),
-    FOREIGN KEY (orderId) REFERENCES "Order" (id)
+    FOREIGN KEY (menu_item_id) REFERENCES menu_items (id),
+    FOREIGN KEY (order_id) REFERENCES orders (id)
 );

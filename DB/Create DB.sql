@@ -1,1 +1,1 @@
-CREATE DATABASE MyDB;
+CREATE DATABASE food_ordering;
