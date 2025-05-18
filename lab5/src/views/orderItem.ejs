@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Order creation</title>
+        <link rel="stylesheet" href="/styles.css" />
+        <link rel="stylesheet" href="/menu.css" />
+        <link rel="stylesheet" href="/orderItem.css" />
+    </head>
+    <body>
+        <div class="container">
+            <div class="menu card">
+                <% if (isAdmin) { %>
+                <div class="menu__header">
+                    <h1 class="title"><%= order.customerName %></h1>
+                    <div class="header__buttons">
+                        <a class="menu__order-button" href="/admin/orders">Back to orders</a>
+
+                        <% if (order.status === "Pending") { %>
+                        <form action="/admin/orders/<%= order.id %>/status" method="POST">
+                            <input type="hidden" name="status" value="In Progress" />
+                            <button class="menu__order-button" type="submit">Send order</button>
+                        </form>
+                        <% } else if (order.status === "In Progress") { %>
+                        <form action="/admin/orders/<%= order.id %>/status" method="POST">
+                            <input type="hidden" name="status" value="Completed" />
+                            <button class="menu__order-button" type="submit">Complete</button>
+                        </form>
+                        <% } %>
+                    </div>
+                </div>
+
+                <ul class="menu__list">
+                    <% menu.filter(menuItem => order.orderItems.map(orderItem => orderItem.amount ? orderItem.menuItemId :
+                    -1).includes(menuItem.id)).reverse().forEach(menuItem => { %>
+                    <li class="menu__item menu__item_admin card">
+                        <% if (menuItem.image) { %>
+                        <img class="menu__image" src="<%= menuItem.image %>" alt="<%= menuItem.name %>" />
+                        <% } else { %>
+                        <img class="menu__image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRi7Z6nS0paslUx7X-rSOyNqmhge_ugyoMcFA&s" />
+                        <% } %>
+
+                        <div class="menu-item__header">
+                            <span class="menu__name"><%= menuItem.name %></span>
+                            <span class="menu__price"><%= menuItem.price %> $</span>
+                        </div>
+
+                        <span class="menu__description"><%= menuItem.description %></span>
+
+                        <input
+                            class="menu-form__input"
+                            type="text"
+                            name="amount"
+                            value="<%= order.orderItems.find(item => item.menuItemId === menuItem.id)?.amount || 0 %>"
+                            readonly
+                        />
+                    </li>
+                    <% }) %>
+                </ul>
+                <% } else { %>
+                <div class="menu__header">
+                    <h1 class="title">Create order</h1>
+                    <form action="/orders/<%= order.id %>/status" method="POST">
+                        <input type="hidden" name="status" value="Pending" />
+                        <button class="menu__order-button" type="submit">Submit order</button>
+                    </form>
+                </div>
+
+                <ul class="menu__list">
+                    <% menu.reverse().forEach(menuItem => { %>
+                    <li class="menu__item card">
+                        <div class="menu__upper-part">
+                            <% if (menuItem.image) { %>
+                            <img class="menu__image" src="<%= menuItem.image %>" alt="<%= menuItem.name %>" />
+                            <% } else { %>
+                            <img
+                                class="menu__image"
+                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRi7Z6nS0paslUx7X-rSOyNqmhge_ugyoMcFA&s"
+                            />
+                            <% } %>
+                            <span class="menu__name"><%= menuItem.name %></span>
+                            <span class="menu__description"><%= menuItem.description %></span>
+                        </div>
+
+                        <div class="menu__lower-part">
+                            <span class="menu__price"><%= menuItem.price %> $</span>
+                            <form class="menu__item-details" action="/orders/<%= order.id %>" method="POST">
+                                <input type="hidden" name="menuItemId" value="<%= menuItem.id %>" />
+                                <input
+                                    class="menu-form__input"
+                                    type="number"
+                                    name="amount"
+                                    min="0"
+                                    max="10"
+                                    value="<%= order.orderItems.find(item => item.menuItemId === menuItem.id)?.amount || 0 %>"
+                                    required
+                                />
+                                <button class="menu__button" type="submit">Add</button>
+                            </form>
+                        </div>
+                    </li>
+                    <% }) %>
+                </ul>
+                <% } %>
+            </div>
+        </div>
+    </body>
+</html>

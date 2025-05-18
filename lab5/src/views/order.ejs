@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Orders list</title>
+        <link rel="stylesheet" href="/styles.css" />
+        <link rel="stylesheet" href="/order.css" />
+    </head>
+    <body>
+        <div class="container">
+            <div class="order card">
+                <div class="order__header">
+                    <h1 class="title">Orders</h1>
+                    <a href="/admin/menu" class="order__menu-button">Back to menu</a>
+                </div>
+
+                <div class="order__list">
+                    <% orders.reverse().filter(orderItem => orderItem.status != "New").forEach(orderItem => { %>
+                    <div class="order__item card">
+                        <span class="order__client"><%= orderItem.customerName %></span>
+
+                        <% if (orderItem.orderItems.filter(item => item.amount).length == 1) { %>
+                        <span class="order__amount"><%= orderItem.orderItems.filter(item => item.amount).length %> dish ordered</span>
+                        <% } else { %>
+                        <span class="order__amount"><%= orderItem.orderItems.filter(item => item.amount).length %> dishes ordered</span>
+                        <% } %>
+
+                        <span class="order__status"><%= orderItem.status %></span>
+
+                        <% if (orderItem.status == "In Progress") { %>
+                        <form action="orders/<%= orderItem.id %>/status" method="POST">
+                            <input type="hidden" name="status" value="Completed" />
+                            <button class="order__button" type="submit">Complete</button>
+                        </form>
+                        <% } else if (orderItem.status == "Pending") { %>
+                        <form action="orders/<%= orderItem.id %>/status" method="POST">
+                            <input type="hidden" name="status" value="In Progress" />
+                            <button class="order__button" type="submit">Send order</button>
+                        </form>
+                        <% } %>
+
+                        <a href="/admin/orders/<%= orderItem.id %>" class="order__button">View</a>
+                    </div>
+                    <% }) %>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
