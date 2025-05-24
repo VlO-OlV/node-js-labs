@@ -17,3 +17,5 @@ router.get('/', (request: Request, response: Response, next: NextFunction) => {
 router.get('/:id', menuController.getMenuItemById);
 router.post('/', menuController.createMenuItem);
 router.post('/:id/delete', menuController.deleteMenuItem);
+router.post('/:id/edit', menuController.editMenuItemForm);
+router.post('/:id', menuController.updateMenuItem);

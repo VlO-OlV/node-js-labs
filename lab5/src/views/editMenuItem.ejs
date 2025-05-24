@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Menu item editor</title>
+        <link rel="stylesheet" href="/styles.css" />
+        <link rel="stylesheet" href="/menu.css" />
+    </head>
+    <body>
+        <div class="container">
+            <div class="menu card">
+                <form action="/menu/<%= menuItem.id %>" method="POST" class="menu__form">
+                    <h1 class="menu-form__title">Edit Menu Item</h1>
+                    <label class="menu-form__label">Name:</label>
+                    <input class="menu-form__input" type="text" name="name" value="<%= menuItem.name %>" required />
+                    <label class="menu-form__label">Description:</label>
+                    <textarea class="menu-form__textarea" name="description" required><%= menuItem.description %></textarea>
+                    <label class="menu-form__label">Image URL:</label>
+                    <input class="menu-form__input" type="text" name="image" value="<%= menuItem.image %>" />
+                    <label class="menu-form__label">Price:</label>
+                    <input class="menu-form__input" type="number" name="price" value="<%= menuItem.price %>" required />
+                    <button class="menu-form__button" type="submit">Update</button>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>
