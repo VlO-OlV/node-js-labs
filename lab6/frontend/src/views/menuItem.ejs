@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Menu item - <%= menuItem.name %></title>
+        <link rel="stylesheet" href="/styles.css" />
+        <link rel="stylesheet" href="/menuItem.css" />
+    </head>
+    <body>
+        <div class="container">
+            <div class="menu card">
+                <% if (menuItem.image) { %>
+                <img class="menu__image" src="<%= menuItem.image %>" alt="<%= menuItem.name %>" />
+                <% } else { %>
+                <img class="menu__image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRi7Z6nS0paslUx7X-rSOyNqmhge_ugyoMcFA&s" />
+                <% } %>
+                <div class="menu__header">
+                    <h1 class="menu__name"><%= menuItem.name %></h1>
+
+                    <span class="menu__price"><%= menuItem.price %> $</span>
+                </div>
+                <p class="menu__description"><%= menuItem.description %></p>
+                <% if (isAdmin) { %>
+                        <form action="/admin/menu/<%= menuItem.id %>/edit" method="POST" class="menu__form">
+                            <button class="menu__button" type="submit">Edit menu item</button>
+                        </form>
+                        <form action="/menu/<%= menuItem.id %>/delete" method="POST" class="menu__form">
+                            <button class="menu__button" type="submit">Delete menu item</button>
+                        </form>
+                        <a href="/admin/menu" class="menu__button">Back to menu</a>
+                <% } else { %>
+                <a href="/menu" class="menu__button">Back to menu</a>
+                <% } %>
+            </div>
+        </div>
+    </body>
+</html>
