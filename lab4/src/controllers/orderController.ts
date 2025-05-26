@@ -77,7 +77,7 @@ export const addOrderItem = (request: Request, response: Response) => {
         orderId: orderId,
     }
 
-    orderService.addOrderItem(orderItem);
-
-    response.redirect('/orders/' + orderId);
+    orderService.addOrderItem(orderItem).then(() => {
+        response.redirect('/orders/' + orderId);
+    });
 };

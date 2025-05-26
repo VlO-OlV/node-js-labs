@@ -14,6 +14,6 @@ const initOptions: pgPromise.IInitOptions<Extensions> = {
     }
 };
 
-export const pgp: pgPromise.IMain = pgPromise({...initOptions});
+export const pgp: pgPromise.IMain = pgPromise({ ...initOptions });
 
 export const db: ExtendedProtocol = pgp(process.env.DATABASE_URL);

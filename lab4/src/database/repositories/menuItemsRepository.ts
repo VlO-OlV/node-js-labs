@@ -21,7 +21,7 @@ export class MenuItemsRepository {
         return this.db.any('SELECT * FROM menu_items');
     }
 
-    updateById(id: number, updatedFields: Partial<Omit<MenuItem, 'id'>>): Promise<void> {
+    updateById(id: number, updatedFields: Omit<MenuItem, 'id'>): Promise<void> {
         const condition = this.pgp.as.format('WHERE id = $1', [id]);
         const query = this.pgp.helpers.update(updatedFields, ['name', 'description', 'price', 'image'], 'menu_items') + ' ' + condition;
         return this.db.none(query);

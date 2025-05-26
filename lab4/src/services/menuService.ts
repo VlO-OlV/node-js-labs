@@ -30,7 +30,7 @@ export const deleteMenuItem = (menuItemId: number): Promise<void> => {
     });
 };
 
-export const updateMenuItem = (id: number, updatedFields: Partial<Omit<MenuItem, 'id'>>): Promise<void> => {
+export const updateMenuItem = (id: number, updatedFields: Omit<MenuItem, 'id'>): Promise<void> => {
     return db.tx(async t => {
         const existing = await t.menuItem.findById(id);
         if (!existing) {
