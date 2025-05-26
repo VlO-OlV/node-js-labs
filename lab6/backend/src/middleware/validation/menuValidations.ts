@@ -43,5 +43,5 @@ export const updateMenuItemValidation: ValidationChain[] = [
     .notEmpty()
     .withMessage('Price is required')
     .isFloat({ min: 0 })
-    .withMessage('Price cannot be negative'),
+    .withMessage('Price must be negative'),
 ];

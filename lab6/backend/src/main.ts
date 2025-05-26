@@ -4,7 +4,6 @@ import session from "express-session";
 import { router as menuRouter } from "./routes/menuRoutes";
 import { router as orderRouter } from "./routes/orderRoutes";
 import { sequelize } from './database/client';
-import { validationMiddleware } from './middleware/validation/validationMiddleware';
 
 const app: Express = express();
 
@@ -28,7 +27,6 @@ app.use(session({
 }));
 
 app.use(express.json());
-app.use(validationMiddleware);
 
 app.post("/auth", (request: Request, response: Response) => {
     request.session["customerName"] = request.body.customerName;

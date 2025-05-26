@@ -10,11 +10,12 @@ dotenv.config();
 const createPath = (page: string) => path.join(__dirname, "/../views", `${page}.ejs`);
 
 export const getAllOrders = (request: Request, response: Response) => {
-    fetch(process.env.API_URL + "/orders").then((response: any) => response.json())
-        .then((orders: Order[]) => {
-            const pagination: { page: number, totalPages: number, filter: OrderStatus | null } = { page: 1, totalPages: 4, filter: OrderStatus.PENDING };
+    const queryParams: { filter?: OrderStatus, page?: number, limit?: number } = request.query;
+    const queryString: string = '?' + Object.entries(queryParams).map(([key, value]) => value ? `${key}=${value}` : '').join('&');
 
-            response.render(createPath("order"), { orders: orders, pagination: pagination });
+    fetch(process.env.API_URL + "/orders" + queryString).then((response: any) => response.json())
+        .then(({ data, pagination }: { data: Order[], pagination?: { filter?: OrderStatus | null, page?: number, limit?: number } }) => {
+            response.render(createPath("order"), { orders: data, pagination: pagination });
         });
 };
 
