@@ -5,7 +5,7 @@ import { sequelize } from '../database/client';
 import { Transaction } from 'sequelize';
 
 export const getAllOrders = async (): Promise<OrderDto[]> => {
-    return ordersRepository.findAll({ include: [orderItemsRepository] });
+    return (await ordersRepository.findAll({ include: [orderItemsRepository] })).sort((a, b) => a.id - b.id);
 };
 
 export const getOrderById = async (id: number): Promise<OrderDto | null> => {
