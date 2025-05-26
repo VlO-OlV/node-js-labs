@@ -5,9 +5,16 @@ import { CreateMenuItemDto, MenuItemDto } from '../database/repositories/menuIte
 export const getAllMenuItems = (request: Request, response: Response) => {
     menuService.getAllMenuItems()
         .then((menuItems: MenuItemDto[]) => {
-            response.status(200).json([...menuItems]);
-        })
-        .catch((error) => {
+            response.status(200).json(menuItems.map((menuItem: MenuItemDto) => {
+                return {
+                    id: menuItem.id,
+                    name: menuItem.name,
+                    description: menuItem.description,
+                    image: menuItem.image,
+                    price: menuItem.price
+                };
+            }));
+        }).catch((error) => {
             console.error(error);
             response.status(500).json({ message: 'Internal Server Error' });
         });
@@ -17,7 +24,13 @@ export const getMenuItemById = (request: Request, response: Response) => {
     const menuItemId: number = parseInt(request.params.id);
 
     menuService.getMenuItemById(menuItemId).then((menuItem: MenuItemDto) => {
-        response.status(200).json({ ...menuItem });
+        response.status(200).json({
+            id: menuItem.id,
+            name: menuItem.name,
+            description: menuItem.description,
+            image: menuItem.image,
+            price: menuItem.price
+        });
     }).catch((error) => {
         console.error(error);
         response.status(400).json({ message: 'Menu item with such id not found' });
@@ -33,10 +46,10 @@ export const createMenuItem = (request: Request, response: Response) => {
     };
 
     menuService.createMenuItem(menuItem).then(() => {
-        response.status(201).json({ message: "Item created" });
+        response.status(201).json({ message: "Menu item created" });
     }).catch((error) => {
         console.error(error);
-        response.status(500).json({ message: 'Internal Server Error'});
+        response.status(500).json({ message: 'Internal Server Error' });
     });
 };
 
@@ -49,8 +62,9 @@ export const deleteMenuItem = (request: Request, response: Response) => {
         console.error(error);
         if (error.message.indexOf('id') !== -1) {
             response.status(400).json({ message: error.message });
-        } else {
-            response.status(500).json({ message: 'Internal Server Error'});
+        }
+        else {
+            response.status(500).json({ message: 'Internal Server Error' });
         };
     });
 };
@@ -64,16 +78,15 @@ export const updateMenuItem = (request: Request, response: Response) => {
         image: request.body.image,
         price: parseFloat(request.body.price),
     };
-    menuService.updateMenuItem(menuItemId, updatedFields)
-        .then(() => {
-            response.redirect('/admin/menu');
-        })
-        .catch((error) => {
-            console.error(error);
-            if (error.message === 'Item not found') {
-                response.status(404).json({ message: 'Menu item not found' });
-            } else {
-                response.status(500).json({ message: 'Internal Server Error'});
-            }
-        });
+
+    menuService.updateMenuItem(menuItemId, updatedFields).then(() => {
+        response.status(200).json({ message: "Menu item updated" });
+    }).catch((error) => {
+        console.error(error);
+        if (error.message === 'Item not found') {
+            response.status(404).json({ message: 'Menu item not found' });
+        } else {
+            response.status(500).json({ message: 'Internal Server Error' });
+        }
+    });
 };

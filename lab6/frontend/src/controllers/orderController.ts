@@ -1,71 +1,69 @@
-import { Request, Response } from 'express';
+import { Request, Response } from "express";
 import path from "path";
-import * as orderService from '../services/orderService';
-import * as menuService from '../services/menuService';
-import { CreateOrderDto, OrderDto } from '../database/repositories/ordersRepository';
-import { MenuItemDto } from '../database/repositories/menuItemsRepository';
-import { OrderStatus } from '../database/models/Order';
-import { CreateOrderItemDto } from '../database/repositories/orderItemsRepository';
+import { Order, OrderStatus } from "../models/Order";
+import * as dotenv from "dotenv";
+import { MenuItem } from "../models/MenuItem";
+import { OrderItem } from "../models/OrderItem";
 
-const createPath = (page: string) => path.join(__dirname, '/../views', `${page}.ejs`);
+dotenv.config();
+
+const createPath = (page: string) => path.join(__dirname, "/../views", `${page}.ejs`);
 
 export const getAllOrders = (request: Request, response: Response) => {
-    orderService.getAllOrders().then((orders: OrderDto[]) => {
-        response.render(createPath('order'), { orders: orders });
-        //response.send(orders)
-    }).catch((error) => {
-        console.error(error);
-        response.status(500).send('Internal Server Error');
-    });
+    fetch(process.env.API_URL + "/orders").then((response: any) => response.json())
+        .then((orders: Order[]) => {
+            response.render(createPath("order"), { orders: orders });
+        });
 };
 
 export const getOrderById = (request: Request, response: Response) => {
     const orderId: number = parseInt(request.params.id);
 
-    orderService.getOrderById(orderId).then((order: OrderDto) => {
-        menuService.getAllMenuItems()
-            .then((menuItems: MenuItemDto[]) => {
-                response.render(createPath('orderItem'), { order: order, menu: menuItems, isAdmin: request.baseUrl.includes('admin') });
-            })
-            .catch((error) => {
-                console.error(error);
-                response.status(500).send('Internal Server Error');
-            });
-    }).catch((error) => {
-        console.error(error);
-        response.status(500).send('Internal Server Error');
-    });
+    fetch(process.env.API_URL + "/orders/" + orderId).then((response: any) => response.json())
+        .then((order: Order) => {
+            fetch(process.env.API_URL + "/menu").then((response: any) => response.json())
+                .then((menuItems: MenuItem[]) => {
+                    response.render(createPath("orderItem"), { order: order, menu: menuItems, isAdmin: request.baseUrl.includes("admin") });
+                });
+        });
 };
 
 export const updateOrderStatus = (request: Request, response: Response) => {
     const orderId: number = parseInt(request.params.id);
     const status: OrderStatus = request.body.status;
 
-    orderService.updateOrderStatus(orderId, status).then(() => {
-        if (request.baseUrl.includes('admin')) {
-            response.redirect('/admin/orders');
+    fetch(process.env.API_URL + "/orders/" + orderId + "/status", {
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ status: status }),
+    }).then((response: any) => response.json()).then(() => {
+        if (request.baseUrl.includes("admin")) {
+            response.redirect("/admin/orders");
         }
         else {
-            response.redirect('/menu');
+            response.redirect("/menu");
         }
-    }).catch((error) => {
-        console.error(error);
-        response.status(500).send('Internal Server Error');
     });
 };
 
 export const createOrder = (request: Request, response: Response) => {
-    const order: CreateOrderDto = {
+    const order: Omit<Order, "id"> = {
         customerName: request.session["customerName"],
         status: OrderStatus.NEW,
     };
 
-    orderService.createOrder(order).then((order: OrderDto) => {
-        response.redirect('/orders/' + order.id);
-    }).catch((error) => {
-        console.error(error);
-        response.status(500).send('Internal Server Error');
-    });
+    fetch(process.env.API_URL + "/orders", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(order),
+    }).then((response: any) => response.json())
+        .then((order: Order) => {
+            response.redirect("/orders/" + order.id);
+        });
 };
 
 export const addOrderItem = (request: Request, response: Response) => {
@@ -73,13 +71,19 @@ export const addOrderItem = (request: Request, response: Response) => {
     const menuItemId: number = parseInt(request.body.menuItemId);
     const amount: number = parseInt(request.body.amount);
 
-    const orderItem: CreateOrderItemDto = {
+    const orderItem: Omit<OrderItem, "id"> = {
         menuItemId: menuItemId,
         amount: amount,
         orderId: orderId,
     }
 
-    orderService.addOrderItem(orderItem);
-
-    response.redirect('/orders/' + orderId);
+    fetch(process.env.API_URL + "/orders/" + orderId, {
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(orderItem),
+    }).then((response: any) => response.json()).then(() => {
+        response.redirect("/orders/" + orderId);
+    });
 };

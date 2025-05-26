@@ -1,69 +1,64 @@
-import { Request, Response } from 'express';
+import { Request, Response } from "express";
 import path from "path";
-import * as menuService from '../services/menuService';
-import { CreateMenuItemDto, MenuItemDto } from '../database/repositories/menuItemsRepository';
-import {MenuItem} from "../database/models/MenuItem";
+import { MenuItem } from "../models/MenuItem";
+import * as dotenv from "dotenv";
 
-const createPath = (page: string) => path.join(__dirname, '/../views', `${page}.ejs`);
+dotenv.config();
+
+const createPath = (page: string) => path.join(__dirname, "/../views", `${page}.ejs`);
 
 export const getAllMenuItems = (request: Request, response: Response) => {
-    menuService.getAllMenuItems()
-        .then((menuItems: MenuItemDto[]) => {
-            response.render(createPath('menu'), { menu: menuItems, isAdmin: request.baseUrl.includes('admin') });
-        })
-        .catch((error) => {
-            console.error(error);
-            response.status(500).send('Internal Server Error');
+    fetch(process.env.API_URL + "/menu").then((response: any) => response.json())
+        .then((menuItem: MenuItem[]) => {
+            response.render(createPath("menu"), { menu: menuItem, isAdmin: request.baseUrl.includes("admin") });
         });
 };
 
 export const getMenuItemById = (request: Request, response: Response) => {
     const menuItemId: number = parseInt(request.params.id);
 
-    menuService.getMenuItemById(menuItemId).then((menuItem: MenuItemDto) => {
-        response.render(createPath('menuItem'), { menuItem: menuItem, isAdmin: request.baseUrl.includes('admin') });
-    }).catch((error) => {
-        console.error(error);
-        response.status(500).send('Internal Server Error');
-    });
+    fetch(process.env.API_URL + "/menu/" + menuItemId).then((response: any) => response.json())
+        .then((menuItem: MenuItem) => {
+            response.render(createPath("menuItem"), { menuItem: menuItem, isAdmin: request.baseUrl.includes("admin") });
+        });
 };
 
 export const createMenuItem = (request: Request, response: Response) => {
-    const menuItem: CreateMenuItemDto = {
+    const menuItem: Omit<MenuItem, "id"> = {
         name: request.body.name,
         description: request.body.description,
         image: request.body.image,
         price: parseFloat(request.body.price)
     };
 
-    menuService.createMenuItem(menuItem).then(() => {
-        response.redirect('/admin/menu');
-    }).catch((error) => {
-        console.error(error);
-        response.status(500).send('Internal Server Error');
+    fetch(process.env.API_URL + "/menu", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(menuItem)
+    }).then((response: any) => response.json()).then(() => {
+        response.redirect("/admin/menu");
     });
 };
 
 export const deleteMenuItem = (request: Request, response: Response) => {
     const menuItemId: number = parseInt(request.params.id);
 
-    menuService.deleteMenuItem(menuItemId).then(() => {
-        response.redirect('/admin/menu');
-    }).catch((error) => {
-        console.error(error);
-        response.status(500).send('Internal Server Error');
+    fetch(process.env.API_URL + "/menu/" + menuItemId, {
+        method: "DELETE"
+    }).then((response: any) => response.json()).then(() => {
+        response.redirect("/admin/menu");
     });
 };
 
 export const editMenuItemForm = (request: Request, response: Response) => {
     const menuItemId: number = parseInt(request.params.id);
 
-    menuService.getMenuItemById(menuItemId).then((menuItem: MenuItem) => {
-        response.render(createPath('editMenuItem'), { menuItem: menuItem, isAdmin: request.baseUrl.includes('admin') });
-    }).catch((error) => {
-        console.error(error);
-        response.status(404).send('Menu item not found');
-    });
+    fetch(process.env.API_URL + '/menu/' + menuItemId).then((response: any) => response.json())
+        .then((menuItem: MenuItem) => {
+            response.render(createPath("editMenuItem"), { menuItem: menuItem, isAdmin: request.baseUrl.includes("admin") });
+        });
 };
 
 export const updateMenuItem = (request: Request, response: Response) => {
@@ -75,16 +70,14 @@ export const updateMenuItem = (request: Request, response: Response) => {
         image: request.body.image,
         price: parseFloat(request.body.price),
     };
-    menuService.updateMenuItem(menuItemId, updatedFields)
-        .then(() => {
-            response.redirect('/admin/menu');
-        })
-        .catch((error) => {
-            console.error(error);
-            if (error.message === 'Item not found') {
-                response.status(404).send('Menu item not found');
-            } else {
-                response.status(500).send('Internal Server Error');
-            }
-        });
+
+    fetch(process.env.API_URL + "/menu/" + menuItemId, {
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(updatedFields),
+    }).then((response: any) => response.json()).then(() => {
+        response.redirect("/admin/menu");
+    });
 };

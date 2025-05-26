@@ -25,7 +25,7 @@ export const createMenuItemValidation: ValidationChain[] = [
 
 export const updateMenuItemValidation: ValidationChain[] = [
   body('name')
-    .optional()
+    .notEmpty()
     .withMessage('Name is required')
     .isString()
     .withMessage('Name must be a string')
@@ -40,7 +40,7 @@ export const updateMenuItemValidation: ValidationChain[] = [
     .isURL()
     .withMessage('Wrong image URL format'),
   body('price')
-    .optional()
+    .notEmpty()
     .withMessage('Price is required')
     .isFloat({ min: 0 })
     .withMessage('Price cannot be negative'),
