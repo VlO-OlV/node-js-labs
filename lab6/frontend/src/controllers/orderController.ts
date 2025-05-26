@@ -12,7 +12,9 @@ const createPath = (page: string) => path.join(__dirname, "/../views", `${page}.
 export const getAllOrders = (request: Request, response: Response) => {
     fetch(process.env.API_URL + "/orders").then((response: any) => response.json())
         .then((orders: Order[]) => {
-            response.render(createPath("order"), { orders: orders });
+            const pagination: { page: number, totalPages: number, filter: OrderStatus | null } = { page: 1, totalPages: 4, filter: OrderStatus.PENDING };
+
+            response.render(createPath("order"), { orders: orders, pagination: pagination });
         });
 };
 

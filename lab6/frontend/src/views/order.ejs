@@ -11,7 +11,19 @@
         <div class="container">
             <div class="order card">
                 <div class="order__header">
+                    <form action="/admin/orders" method="GET" class="order__filter">
                     <h1 class="title">Orders</h1>
+                        <select name="filter" class="order__filter-select">
+                            <option value="All" <% if (pagination.filter == "All") { %>selected<% } %>>All</option>
+                            <option value="Pending" <% if (pagination.filter == "Pending") { %>selected<% } %>>Pending</option>
+                            <option value="In Progress" <% if (pagination.filter == "In Progress") { %>selected<% } %>>In Progress</option>
+                            <option value="Completed" <% if (pagination.filter == "Completed") { %>selected<% } %>>Completed</option>
+                        </select>
+                        <span class="order__filter-arrow"></span>
+
+                        <button type="submit" class="order__filter-button">Filter</button>
+                    </form>
+
                     <a href="/admin/menu" class="order__menu-button">Back to menu</a>
                 </div>
 
@@ -43,6 +55,16 @@
                         <a href="/admin/orders/<%= orderItem.id %>" class="order__button">View</a>
                     </div>
                     <% }) %>
+                </div>
+
+                <div class="order__buttons">
+                    <% if (pagination.page > 1) { %>
+                    <a class="order__button" href="/admin/orders?page=<%= pagination.page - 1 %>&filter=<%= pagination.filter %>">Previous</a>
+                    <% } else { %>
+                    <span></span>
+                    <% } if (pagination.page < pagination.totalPages) { %>
+                    <a class="order__button" href="/admin/orders?page=<%= pagination.page + 1 %>&filter=<%= pagination.filter %>">Next</a>
+                    <% } %>
                 </div>
             </div>
         </div>
