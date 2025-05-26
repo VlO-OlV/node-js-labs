@@ -3,6 +3,7 @@ import { CreateOrderItemDto, OrderItemDto, orderItemsRepository } from '../datab
 import { CreateOrderDto, OrderDto, ordersRepository } from '../database/repositories/ordersRepository';
 import { sequelize } from '../database/client';
 import { Transaction } from 'sequelize';
+import { menuItemsRepository } from '../database/repositories/menuItemsRepository';
 
 export const getAllOrders = async (): Promise<OrderDto[]> => {
     return (await ordersRepository.findAll({ include: [orderItemsRepository] })).sort((a, b) => a.id - b.id);
@@ -20,7 +21,23 @@ export const createOrder = async (order: CreateOrderDto): Promise<OrderDto> => {
 
 export const addOrderItem = async (orderItem: CreateOrderItemDto): Promise<OrderItemDto> => {
     return await sequelize.transaction(async (t: Transaction) => {
-        return orderItemsRepository.create(orderItem, { transaction: t });
+        const order = await ordersRepository.findByPk(orderItem.orderId, { transaction: t });
+        if (!order) {
+            throw new Error(`Order with id ${orderItem.orderId} not found`);
+        }
+
+        const menuItem = await menuItemsRepository.findOne({ where: { id: orderItem.menuItemId } });
+        if (!menuItem) {
+            throw new Error(`Menu item with id ${orderItem.menuItemId} not found`);
+        }
+
+        const existingItem = await orderItemsRepository.findOne({ where: { orderId: orderItem.orderId, menuItemId: orderItem.menuItemId }, transaction: t });
+        if (existingItem) {
+            return await existingItem.update({ amount: orderItem.amount }, { transaction: t });
+        }
+        else {
+            return orderItemsRepository.create(orderItem, { transaction: t });
+        }
     });
 };
 
@@ -30,6 +47,7 @@ export const updateOrderStatus = async (orderId: number, status: OrderStatus): P
         if (!order) {
             throw new Error('Order with id ${orderId} not found');
         }
+
         await order.update({ status }, { transaction: t });
     });
 };
