@@ -14,7 +14,7 @@
                     <form action="/admin/orders" method="GET" class="order__filter">
                     <h1 class="title">Orders</h1>
                         <select name="filter" class="order__filter-select">
-                            <option value="All" <% if (pagination.filter == "All") { %>selected<% } %>>All</option>
+                            <option value="" <% if (pagination.filter == null) { %>selected<% } %>>All</option>
                             <option value="Pending" <% if (pagination.filter == "Pending") { %>selected<% } %>>Pending</option>
                             <option value="In Progress" <% if (pagination.filter == "In Progress") { %>selected<% } %>>In Progress</option>
                             <option value="Completed" <% if (pagination.filter == "Completed") { %>selected<% } %>>Completed</option>

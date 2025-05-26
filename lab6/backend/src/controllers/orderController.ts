@@ -3,13 +3,14 @@ import * as orderService from '../services/orderService';
 import { CreateOrderDto, OrderDto } from '../database/repositories/ordersRepository';
 import { OrderStatus } from '../database/models/Order';
 import { CreateOrderItemDto } from '../database/repositories/orderItemsRepository';
+import { matchedData } from 'express-validator';
 
 export const getAllOrders = (request: Request, response: Response) => {
-    const { status, page, limit }: { status?: OrderStatus, page?: number, limit?: number } = request.query;
+    const { filter, page, limit }: { filter?: OrderStatus, page?: number, limit?: number } = matchedData(request);
 
-    orderService.getAllOrders(page, limit, status)
-        .then((orders: OrderDto[]) => {
-            response.status(200).json(orders.map((order: OrderDto) => {
+    orderService.getAllOrders(page, limit, filter)
+        .then(({ data, pagination }: { data: OrderDto[], pagination?: any }) => {
+            const orders = data.map((order: OrderDto) => {
                 return {
                     id: order.id,
                     customerName: order.customerName,
@@ -20,7 +21,9 @@ export const getAllOrders = (request: Request, response: Response) => {
                         amount: item.amount,
                     }))
                 };
-            }));
+            });
+
+            response.status(200).json({ data: orders, pagination });
         }).catch((error) => {
             console.error(error);
             response.status(500).json({ message: 'Internal Server Error' });

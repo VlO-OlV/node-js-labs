@@ -5,13 +5,24 @@ import { sequelize } from '../database/client';
 import { Transaction } from 'sequelize';
 import { menuItemsRepository } from '../database/repositories/menuItemsRepository';
 
-export const getAllOrders = async (page = 1, limit = 100, status?: OrderStatus): Promise<OrderDto[]> => {
-    return (await ordersRepository.findAll({
+export const getAllOrders = async (page = 1, limit = 8, status?: OrderStatus): Promise<{ data: OrderDto[], pagination?: any}> => {
+    const orders = await ordersRepository.findAndCountAll({
         where: status ? { status } : {},
         limit,
+        order: [['id', 'ASC']],
         offset: (page - 1) * limit,
         include: [orderItemsRepository],
-    })).sort((a, b) => a.id - b.id);
+        distinct: true,
+    });
+
+    return {
+        data: orders.rows,
+        pagination: {
+            page,
+            totalPages: Math.ceil(orders.count / limit),
+            filter: status || null,
+        },
+    }
 };
 
 export const getOrderById = async (id: number): Promise<OrderDto | null> => {

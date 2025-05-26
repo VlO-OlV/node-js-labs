@@ -7,7 +7,7 @@ export const addOrderItemValidation: ValidationChain[] = [
     .isInt().withMessage('Wrong id format'),
   body('amount')
     .notEmpty().withMessage('Amount is required')
-    .isInt({ min: 1 }).withMessage('Amount must be positive')
+    .isInt({ min: 1 }).withMessage('Amount must be positive number')
     .default(1)
     .toInt(),
 ];
