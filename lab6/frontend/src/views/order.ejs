@@ -28,7 +28,7 @@
                 </div>
 
                 <div class="order__list">
-                    <% orders.reverse().filter(orderItem => orderItem.status != "New").forEach(orderItem => { %>
+                    <% orders.forEach(orderItem => { %>
                     <div class="order__item card">
                         <span class="order__client"><%= orderItem.customerName %></span>
 

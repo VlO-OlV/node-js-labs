@@ -2,14 +2,14 @@ import { OrderStatus } from '../database/models/Order';
 import { CreateOrderItemDto, OrderItemDto, orderItemsRepository } from '../database/repositories/orderItemsRepository';
 import { CreateOrderDto, OrderDto, ordersRepository } from '../database/repositories/ordersRepository';
 import { sequelize } from '../database/client';
-import { Transaction } from 'sequelize';
+import { Op, Transaction } from 'sequelize';
 import { menuItemsRepository } from '../database/repositories/menuItemsRepository';
 
-export const getAllOrders = async (page = 1, limit = 8, status?: OrderStatus): Promise<{ data: OrderDto[], pagination?: any}> => {
+export const getAllOrders = async (page = 1, limit = 6, status?: OrderStatus): Promise<{ data: OrderDto[], pagination?: any }> => {
     const orders = await ordersRepository.findAndCountAll({
-        where: status ? { status } : {},
+        where: { status: { [Op.and]: [{ [Op.ne]: 'New' }, ...(status ? [{ [Op.eq]: status }] : [])] } },
         limit,
-        order: [['id', 'ASC']],
+        order: [['id', 'DESC']],
         offset: (page - 1) * limit,
         include: [orderItemsRepository],
         distinct: true,
