@@ -9,6 +9,45 @@
     align-items: center;
 }
 
+.order__filter {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.order__filter-select {
+    height: 40px;
+    padding: 8px 16px;
+    padding-right: 28px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #333333;
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    border-radius: 8px;
+    cursor: pointer;
+    appearance: none;
+}
+
+.order__filter-arrow {
+    position: absolute;
+    right: 94px;
+    top: 55%;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid #aaaaaa;
+    transform: translateY(-50%);
+}
+
+.order__filter-select:focus {
+    outline: none;
+}
+
+.order__filter-button,
 .order__menu-button {
     display: flex;
     justify-content: center;
@@ -64,4 +103,11 @@
     border: none;
     border-radius: 8px;
     cursor: pointer;
+}
+
+.order__buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 24px;
 }
