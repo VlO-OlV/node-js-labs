@@ -5,7 +5,9 @@ import { OrderStatus } from '../database/models/Order';
 import { CreateOrderItemDto } from '../database/repositories/orderItemsRepository';
 
 export const getAllOrders = (request: Request, response: Response) => {
-    orderService.getAllOrders()
+    const { status, page, limit }: { status?: OrderStatus, page?: number, limit?: number } = request.query;
+
+    orderService.getAllOrders(page, limit, status)
         .then((orders: OrderDto[]) => {
             response.status(200).json(orders.map((order: OrderDto) => {
                 return {

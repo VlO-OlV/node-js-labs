@@ -5,8 +5,13 @@ import { sequelize } from '../database/client';
 import { Transaction } from 'sequelize';
 import { menuItemsRepository } from '../database/repositories/menuItemsRepository';
 
-export const getAllOrders = async (): Promise<OrderDto[]> => {
-    return (await ordersRepository.findAll({ include: [orderItemsRepository] })).sort((a, b) => a.id - b.id);
+export const getAllOrders = async (page = 1, limit = 100, status?: OrderStatus): Promise<OrderDto[]> => {
+    return (await ordersRepository.findAll({
+        where: status ? { status } : {},
+        limit,
+        offset: (page - 1) * limit,
+        include: [orderItemsRepository],
+    })).sort((a, b) => a.id - b.id);
 };
 
 export const getOrderById = async (id: number): Promise<OrderDto | null> => {
